@@ -6,7 +6,7 @@
 <aside class="w-72 bg-lightgray fixed h-full border-r border-darkgray/10 z-30 hidden md:flex flex-col">
 	<div class="p-8">
 		<h1 class="font-headline-md text-headline-md font-semibold text-sage-dark">
-			<a href={resolve('/(app)')}>Alma Cuida</a>
+			<a href={resolve('/')}>Alma Cuida</a>
 		</h1>
 		<p class="text-label-md font-label-md text-darkgray/70 mt-1 uppercase tracking-widest">
 			Admin Portal
