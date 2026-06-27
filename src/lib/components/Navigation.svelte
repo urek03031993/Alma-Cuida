@@ -10,7 +10,8 @@
 		{ label: 'Inicio', href: resolve('/') },
 		{ label: 'Nuestros Servicios', href: resolve('/services') },
 		{ label: 'Instalaciones', href: resolve('/') },
-		{ label: 'Contacto', href: resolve('/contact') }
+		{ label: 'Contacto', href: resolve('/contact') },
+		{ label: 'Admin', href: resolve('/(authed)/admin') }
 	];
 
 	$effect(() => {
@@ -23,7 +24,7 @@
 </script>
 
 
-<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 {scrolled ? 'glass-nav shadow-lg' : 'bg-transparent'}">
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 {scrolled ? 'glass-nav shadow-lg' : 'bg-transparent'}">	
 	<div class="max-w-7xl mx-auto px-6 lg:px-8">
 		<div class="flex items-center justify-between h-20">
 			<a href="#inicio" class="flex items-center gap-3 group">
@@ -44,7 +45,8 @@
 				{#each navLinks as link (link.label)}
 					<a	href={link.href}
 						aria-current={page.url.pathname === link.href}
-						class="nav-link text-sm font-medium text-darkgray/80 hover:text-darkgray transition-colors duration-300 tracking-wide"
+						class="text-sm font-medium text-darkgray/80 hover:text-darkgray transition-colors duration-300 tracking-wide
+								{ page.url.pathname !== link.href ? 'nav-link' : ''}"
 					>
 						{link.label}
 					</a>
@@ -107,6 +109,27 @@
 </nav>
 
 <style>
+		/* Nav link underline */
+	.nav-link {
+		position: relative;
+	}
+
+	.nav-link::after {
+		content: '';
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: #7a9e7e;
+		transition: width 300ms ease;
+		border-radius: 1px;
+	}
+
+	.nav-link:hover::after {
+		width: 100%;
+	}
+
 	nav a[aria-current=true] {
 		border-bottom: 2px solid;
 		border-color: #7a9e7e;
