@@ -7,9 +7,11 @@
 	--color-beige: #e8dfc8;
 	--color-sage: #7a9e7e;
 	--color-darkgray: #4a4a4a;
+	--color-lightgray: #f5f3f3;
 	--color-beige-light: #f0eadd;
 	--color-sage-dark: #5e7d61;
 	--color-sage-light: #8fb093;
+	--color-error: #ba1a1a;
 
 	--font-sans: 'Inter', 'sans-serif';
 
@@ -166,25 +168,6 @@
 	}
 	.btn-shine:hover::after {
 		transform: rotate(30deg) translateX(100%);
-	}
-
-	/* Nav link underline */
-	.nav-link {
-		position: relative;
-	}
-	.nav-link::after {
-		content: '';
-		position: absolute;
-		bottom: -4px;
-		left: 0;
-		width: 0;
-		height: 2px;
-		background: #7a9e7e;
-		transition: width 300ms ease;
-		border-radius: 1px;
-	}
-	.nav-link:hover::after {
-		width: 100%;
 	}
 
 	/* Image overlay gradient */
