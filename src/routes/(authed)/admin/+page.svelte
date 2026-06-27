@@ -263,13 +263,13 @@
 			</div>
 			<div class="bg-sage-dark text-white rounded-3xl p-8 relative overflow-hidden">
 				<div class="relative z-10">
-					<h4 class="font-headline-md text-[20px] mb-2">Staff Training Today</h4>
+					<h4 class="font-headline-md text-[20px] mb-2">Capacitación del personal hoy</h4>
 					<p class="text-white/80 text-sm mb-6">
-						Advanced Wellness Coaching workshop starts at 3:00 PM in the Lounge.
+						El taller avanzado de coaching de bienestar comienza a las 15:00 en el salón.
 					</p>
-					<button class="bg-white text-sage-dark px-4 py-2 rounded-lg text-xs font-bold"
-						>Join Session</button
-					>
+					<button class="bg-white text-sage-dark px-4 py-2 rounded-lg text-xs font-bold">
+						Unirse a la sesión
+					</button>
 				</div>
 				<div
 					class="absolute -right-12 -bottom-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"
