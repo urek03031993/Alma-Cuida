@@ -1,6 +1,8 @@
 <script lang="ts">
-	const navLinks = ['Inicio', 'Nuestro Cuidado', 'Instalaciones', 'Contacto'];
-	const legalLinks = ['Aviso de Privacidad', 'Terminos de Servicio', 'Politica de Cookies'];
+	import Logo from "./Logo.svelte";
+
+	const navLinks = ['Inicio', 'Servicios', 'Contacto'];
+	// const legalLinks = ['Aviso de Privacidad', 'Terminos de Servicio', 'Politica de Cookies'];
 	const socials = ['facebook', 'twitter', 'instagram', 'linkedin'];
 </script>
 
@@ -9,15 +11,8 @@
 		<div class="grid md:grid-cols-4 gap-12 mb-12">
 			<div class="md:col-span-2">
 				<div class="flex items-center gap-3 mb-4">
-					<div class="w-10 h-10 rounded-full bg-sage flex items-center justify-center">
-						<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-							/>
-						</svg>
+					<div class="w-10 h-10 rounded-full flex items-center justify-center">
+						<Logo/>						
 					</div>
 					<span class="text-xl font-semibold text-white">Alma Cuida</span>
 				</div>
@@ -41,7 +36,7 @@
 					{/each}
 				</ul>
 			</div>
-			<div>
+			<!-- <div>
 				<h4 class="font-semibold text-white mb-4">Legal</h4>
 				<ul class="space-y-3">
 					{#each legalLinks as link(link)}
@@ -55,7 +50,7 @@
 						</li>
 					{/each}
 				</ul>
-			</div>
+			</div> -->
 		</div>
 		<div
 			class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4"

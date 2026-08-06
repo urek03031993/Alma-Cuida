@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import  heroImage from '$lib/assets/hero_detail.jpg';
 
 	let loaded = $state(false);
 
@@ -8,29 +9,23 @@
 	});
 
 	const stats = [
-		{ number: '15+', label: 'Anos de experiencia' },
-		{ number: '200+', label: 'Familias felices' },
-		{ number: '24/7', label: 'Atencion medica' }
+		{ number: '2+', label: 'Años de experiencia' },
+		{ number: '600+', label: 'Familias felices' },
+		{ number: '24/7', label: 'Atención al cliente' }
 	];
 </script>
 
-<section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-	<!-- Background Image with Overlay -->
+<section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden"
+		  style="background-image: url({heroImage})">
 	<div class="absolute inset-0 hero-bg">
 		<div class="absolute inset-0 bg-linear-to-b from-cream/30 via-cream/20 to-cream/90"></div>
 		<div class="absolute inset-0 bg-linear-to-r from-cream/60 via-transparent to-cream/40"></div>
 	</div>
 
 	<!-- Decorative floating elements -->
-	<div
-		class="absolute top-32 left-10 w-20 h-20 rounded-full bg-sage/10 floating hidden lg:block"
-	></div>
-	<div
-		class="absolute bottom-40 right-20 w-16 h-16 rounded-full bg-beige/60 floating-delay hidden lg:block"
-	></div>
-	<div
-		class="absolute top-1/2 right-1/4 w-12 h-12 rounded-full bg-sage/15 floating-delay-2 hidden lg:block"
-	></div>
+	<div class="absolute top-32 left-10 w-20 h-20 rounded-full bg-sage/10 floating hidden lg:block"></div>
+	<div class="absolute bottom-40 right-20 w-16 h-16 rounded-full bg-beige/60 floating-delay hidden lg:block"></div>
+	<div class="absolute top-1/2 right-1/4 w-12 h-12 rounded-full bg-sage/15 floating-delay-2 hidden lg:block"></div>
 
 	<!-- Content -->
 	<div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center pt-20">
@@ -42,7 +37,7 @@
 			<span
 				class="inline-block px-5 py-2 glass rounded-full text-xs font-semibold text-sage-dark tracking-widest uppercase mb-8"
 			>
-				Residencia Premium para Adultos Mayores
+				Servicios Premium para el Adulto Mayor
 			</span>
 		</div>
 
@@ -51,7 +46,7 @@
 				? 'opacity-100 translate-y-0'
 				: 'opacity-0 translate-y-8'}"
 		>
-			Cuidado profesional con el
+			Asistencia profesional con el
 			<span class="relative inline-block">
 				<span class="relative z-10">calor de un hogar</span>
 				<span class="absolute bottom-2 left-0 right-0 h-3 bg-sage/20 -rotate-1 rounded-sm"></span>
@@ -65,7 +60,7 @@
 				: 'opacity-0 translate-y-8'}"
 		>
 			Un entorno premium donde nuestro equipo de profesionales se dedica a brindar bienestar,
-			seguridad y acompanamiento constante a quienes mas amas.
+			seguridad y acompañamiento constante a quienes mas amas.
 		</p>
 
 		<div
@@ -109,7 +104,7 @@
 			{#each stats as stat(stat.label)}
 				<div class="text-center">
 					<div class="text-2xl md:text-3xl font-bold text-sage">{stat.number}</div>
-					<div class="text-xs md:text-sm text-darkgray/60 mt-1">{stat.label}</div>
+					<div class="text-xs md:text-sm text-darkgray/ mt-1">{stat.label}</div>
 				</div>
 			{/each}
 		</div>

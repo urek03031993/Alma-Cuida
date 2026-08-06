@@ -2,17 +2,30 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { scrollY } from 'svelte/reactivity/window';
+	import Logo from '$lib/assets/logo_alma_cuida1.svg'
+
+	let { session } = $props();
 
 	let scrolled = $state(false);
 	let mobileOpen = $state(false);
 
-	const navLinks = [
+	const navLinks = $state([
 		{ label: 'Inicio', href: resolve('/') },
 		{ label: 'Nuestros Servicios', href: resolve('/services') },
-		{ label: 'Instalaciones', href: resolve('/') },
+		// { label: 'Instalaciones', href: resolve('/') },
 		{ label: 'Contacto', href: resolve('/contact') },
-		{ label: 'Admin', href: resolve('/(authed)/admin') }
-	];
+		
+	]);
+
+
+	$effect.pre(() => {
+		const adminLinkIndex = navLinks.findIndex(link => link.label === 'Admin');
+		
+		if(session && adminLinkIndex === -1) {			
+			navLinks.push({ label: 'Admin', href: resolve('/(authed)/admin') });
+			console.log('session in Navigation.svelte:', navLinks);
+		}
+	});
 
 	$effect(() => {
 		if (scrollY.current !== undefined && scrollY.current > 30) {
@@ -27,16 +40,18 @@
 <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 {scrolled ? 'glass-nav shadow-lg' : 'bg-transparent'}">	
 	<div class="max-w-7xl mx-auto px-6 lg:px-8">
 		<div class="flex items-center justify-between h-20">
-			<a href="#inicio" class="flex items-center gap-3 group">
-				<div class="w-10 h-10 rounded-full bg-sage flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-					<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<a href={resolve('/(app)')} class="flex items-center gap-3 group">
+				<div class="w-10 h-10 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+					<!-- <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							stroke-width="2"
 							d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
 						/>
-					</svg>
+					</svg> -->
+					<img src={Logo} alt="Logo"/>
+
 				</div>
 				<span class="text-xl font-semibold text-darkgray tracking-tight">Alma Cuida</span>
 			</a>
@@ -51,14 +66,20 @@
 						{link.label}
 					</a>
 				{/each}
-				<a	href="#contacto"
+				<a	href={resolve('/(app)/contact')}
 					class="btn-shine px-6 py-2.5 bg-sage text-white text-sm font-medium rounded-full hover:bg-sage-dark transition-all duration-300 shadow-md hover:shadow-lg"
 				>
 					Reservar Visita
 				</a>
+				{#if !session}
+					<a	href={resolve('/(app)/login')} aria-label="login"			
+						class="btn-shine px-6 py-2.5 bg-cream border-sage text-sage-dark text-sm font-medium rounded-full hover:border transition-all duration-300 shadow-md hover:shadow-lg"						
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-key-icon lucide-user-key"><path d="M20 11v6"/><path d="M20 13h2"/><path d="M3 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 2.072.578"/><circle cx="10" cy="7" r="4"/><circle cx="20" cy="19" r="2"/></svg>
+					</a>					
+				{/if}				
 			</div>
 
-			<!-- Mobile Menu Button -->
 			<button	onclick={() => (mobileOpen = !mobileOpen)} class="md:hidden p-2 rounded-lg hover:bg-beige/50 transition-colors"
 					aria-label="Toggle menu"
 			>
@@ -83,7 +104,6 @@
 		</div>
 	</div>
 
-	<!-- Mobile Menu -->
 	<div
 		class="md:hidden overflow-hidden transition-all duration-500 {mobileOpen
 			? 'max-h-80 opacity-100'
@@ -98,7 +118,7 @@
 					{link.label}
 				</a>
 			{/each}
-			<a	href="#contacto"
+			<a	href={resolve('/(app)/contact')}
 				onclick={() => (mobileOpen = false)}
 				class="block w-full text-center px-6 py-3 bg-sage text-white font-medium rounded-full hover:bg-sage-dark transition-colors"
 			>

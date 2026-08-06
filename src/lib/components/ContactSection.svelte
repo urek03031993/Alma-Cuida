@@ -62,10 +62,10 @@
 					Contacto
 				</span>
 				<h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-darkgray mb-6 leading-tight">
-					Estamos aqui para acompanarte
+					Estamos aquí para acompañarte
 				</h2>
 				<p class="text-darkgray/60 text-lg leading-relaxed mb-10">
-					Agenda una visita guiada y descubre por que tantas familias confian en nosotros. Nuestro
+					Agenda con nosotros y descubre por que tantas familias confian en nosotros. Nuestro
 					equipo esta listo para resolver todas tus dudas.
 				</p>
 
@@ -113,6 +113,7 @@
 							</div>
 							<h3 class="text-xl font-bold text-darkgray mb-2">Mensaje enviado!</h3>
 							<p class="text-darkgray/60">Nos pondremos en contacto contigo muy pronto.</p>
+							<p class="text-darkgray/60">Si es urgente escribanos al whatsapp, es mucho más directo.</p>
 						</div>
 					{:else}
 						<form onsubmit={handleSubmit} class="space-y-5">

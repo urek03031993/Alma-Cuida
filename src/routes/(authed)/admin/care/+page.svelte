@@ -1,3 +1,7 @@
-<p>care
-    
-</p>
+<script lang="ts">
+	import Spinner from "$lib/components/Spinner.svelte";
+
+</script>
+
+
+<Spinner/>
