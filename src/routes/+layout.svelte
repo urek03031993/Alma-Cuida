@@ -1,8 +1,7 @@
 <script lang="ts">
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
-	// import Footer from '$lib/components/Footer.svelte';
-	// import Navigation from '$lib/components/Navigation.svelte';
+	import ToastContainer from '$lib/components/Toast/ToastContainer.svelte';
 
 	let { children } = $props();
 </script>
@@ -13,9 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </svelte:head>
-<!-- 
-<Navigation /> -->
+
+<ToastContainer/>
 
 {@render children()}
-
-<!-- <Footer /> -->

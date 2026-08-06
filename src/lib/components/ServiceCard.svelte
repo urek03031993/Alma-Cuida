@@ -1,16 +1,19 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import { resolve } from '$app/paths';
+	import Logo from './Logo.svelte';
 
 	interface Props {
+		id: number;
 		image: string;
 		title: string;
 		description: string;
 		delay: number;
 	}
 
-	let { image, title, description, delay }: Props = $props();
+	let { id, image, title, description, delay }: Props = $props();
 
-	let cardRef: HTMLDivElement;
+	let cardRef: HTMLElement;
 	let isVisible = $state(false);
 
 	$effect(() => {
@@ -29,51 +32,32 @@
 	});
 </script>
 
-<div
-	bind:this={cardRef}
-	class="card-3d glass-card rounded-3xl overflow-hidden group cursor-pointer transition-all duration-700 {isVisible
+<article bind:this={cardRef} 
+		class="glass-card rounded-xl overflow-hidden flex flex-col h-full group {isVisible
 		? 'opacity-100 translate-y-0'
 		: 'opacity-0 translate-y-12'}"
-	style="transition-delay: {delay}ms"
->
-	<!-- Image -->
-	<div class="relative h-64 overflow-hidden">
+		 style="transition-delay: {delay}ms">
+	<div class="h-64 overflow-hidden">
 		<img
-			src={image}
 			alt={title}
 			class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+			src={image}
 			loading="lazy"
 		/>
-		<div class="absolute inset-0 image-overlay"></div>
-		<div class="absolute bottom-4 left-4 right-4">
-			<div
-				class="w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center mb-3 shadow-lg"
-			>
-				<svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="1.5"
-						d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-					/>
-				</svg>
-			</div>
-		</div>
 	</div>
-
-	<!-- Content -->
-	<div class="p-8">
-		<h3
-			class="text-xl font-bold text-darkgray mb-3 group-hover:text-sage transition-colors duration-300"
-		>
-			{title}
-		</h3>
-		<p class="text-darkgray/70 leading-relaxed text-sm">
+	<div class="p-8 flex flex-col grow">
+		<div class="flex items-center gap-3 mb-4">					
+			<div class="w-12 h-12 rounded-full backdrop-blur-sm flex items-center justify-center mb-3 shadow-lg">
+				<Logo/>
+			</div>
+			<h3 class="font-headline-md text-headline-md text-on-surface">{title}</h3>
+		</div>
+		<p class="text-on-surface-variant mb-8 grow">
 			{description}
 		</p>
-		<div
-			class="mt-6 flex items-center gap-2 text-sage font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-2.5 group-hover:translate-x-0"
-		>
+
+		<div class="mt-6 flex items-center gap-2 text-sage font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-2.5 group-hover:translate-x-0"> 
+		<a href={resolve(`/services/${id.toString()}`)} class="flex items-center gap-2">
 			<span>Saber mas</span>
 			<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path
@@ -83,6 +67,23 @@
 					d="M17 8l4 4m0 0l-4 4m4-4H3"
 				/>
 			</svg>
-		</div>
+		</a>			
+	</div>				
 	</div>
-</div>
+	
+</article>
+
+<style>
+    .glass-card {
+        background: rgba(232, 223, 200, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .glass-card:hover {
+        transform: translateY(-8px) perspective(1000px) rotateX(2deg) rotateY(1deg);
+        box-shadow: 0 20px 40px rgba(122, 158, 126, 0.15);
+    }
+</style>

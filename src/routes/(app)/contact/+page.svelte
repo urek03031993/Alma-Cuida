@@ -4,13 +4,11 @@
 			Estamos aquí para escucharte
 		</h1>
 		<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">
-			Ya sea que desees programar una visita guiada o simplemente necesites más información sobre
-			nuestro modelo de cuidado, nuestro equipo está listo para recibirte con calidez.
+			Ya sea que desees solicitar uno de nuestros servicios o simplemente necesites más información sobre
+			nuestro modelo de asistencia, nuestro equipo está listo para recibirte con calidez.
 		</p>
 	</section>
-	<!-- Two Column Content -->
 	<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-		<!-- Left Column: Contact Info -->
 		<div class="space-y-8">
 			<div class="glass-card card-3d-hover p-10 rounded-xl space-y-10">
 				<h2 class="font-headline-lg text-headline-lg text-sage">Información de Contacto</h2>
@@ -63,7 +61,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- Decorative Image or Map Placeholder -->
 			<div class="rounded-xl overflow-hidden shadow-sm h-64 relative">
 				<img alt="contact_image"
 					class="w-full h-full object-cover"
@@ -73,7 +70,6 @@
 				<div class="absolute inset-0 bg-primary/10 backdrop-overlay"></div>
 			</div>
 		</div>
-		<!-- Right Column: Contact Form -->
 		<div class="glass-card p-10 rounded-xl">
 			<form class="space-y-6">
 				<div class="space-y-2">

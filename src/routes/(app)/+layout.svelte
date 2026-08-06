@@ -2,11 +2,11 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Navigation from '$lib/components/Navigation.svelte';
 
-	let { children } = $props();
+	let { children, data  } = $props();
 </script>
 
 
-<Navigation />
+<Navigation session={data.session}/>
 
 {@render children()}
 

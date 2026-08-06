@@ -1,0 +1,47 @@
+import bcrypt from 'bcryptjs';
+import { v4 } from 'uuid';
+
+
+export function encriptPass(password: string): string {
+    return bcrypt.hashSync(password, 12);    
+}
+
+export function isValidPass(password: string, hash: string): boolean {
+    return bcrypt.compareSync(password, hash);
+}
+
+export function buildRequestBody(data: FormData): Record<string, unknown>{
+	const body: Record<string, unknown> = {}
+
+	for (const [key, value] of data.entries()) {
+		body[key] = value;
+	}
+
+	return body
+}
+
+export function buildImageName(fileName: string): string {
+	const ext = fileName.split('.')
+	const uuid = v4();
+
+	if ( ext.length === 0 ) {
+		return uuid
+	}
+	return `${uuid}.${ext[ext.length - 1]}`
+}
+
+export function buildSlug(name: string, description: string): string {
+	return name.toLowerCase() + description.toLowerCase()
+}
+
+export function isValidRentalPeriod(startDate: Date, endDate: Date): boolean {
+	if (!startDate || !endDate) return false;
+
+	const initialDate = new Date(startDate);
+	const finalDate = new Date(endDate);
+
+	const diffTime = Math.abs(finalDate.getTime() - initialDate.getTime());
+	const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+	return diffDays <= 4;
+};
