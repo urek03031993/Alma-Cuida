@@ -17,6 +17,7 @@
 		</p>
 	</div>
 	<form class="space-y-6" method="POST" use:enhance>
+		<input type="hidden" name="id" id="id" bind:value={data.id}/>
 		<div class="space-y-1.5">
 			<label for="name" class="font-label-md text-label-md text-on-surface-variant block">
 				Nombre completo

@@ -3,7 +3,10 @@
 
 	let sectionRef: HTMLElement;
 	let isVisible = $state(false);
-	let formData = $state({ name: '', email: '', phone: '', message: '' });
+	let name = $state('');
+	let email = $state('');
+	let phone = $state('');
+	let message = $state('');
 	let submitted = $state(false);
 
 	$effect(() => {
@@ -25,7 +28,21 @@
 		e.preventDefault();
 		submitted = true;
 		setTimeout(() => (submitted = false), 3000);
-		formData = { name: '', email: '', phone: '', message: '' };
+
+		const recipient = "almacuidacomercial@gmail.com";
+		const subject = 'Peticion de servicio de parte de ' + name;
+		const body = [
+		'Nombre: ' + name,
+		'Telefono: ' + phone,
+		'Mensaje: ' + message
+		].join("\n");
+
+		const mailtoUrl = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+		name = '';
+		email = '';
+		phone = '';
+		message = '';
+		window.location.href = mailtoUrl;
 	}
 
 	const contactInfo = [
@@ -123,7 +140,7 @@
 									name="name"
 									type="text"
 									required
-									bind:value={formData.name}
+									bind:value={name}
 									class="w-full px-4 py-3 rounded-xl bg-white/70 border border-beige/50 focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition-all duration-300 text-darkgray placeholder:text-darkgray/30"
 									placeholder="Tu nombre"
 								/>
@@ -135,7 +152,7 @@
 										name="email"
 										type="email"
 										required
-										bind:value={formData.email}
+										bind:value={email}
 										class="w-full px-4 py-3 rounded-xl bg-white/70 border border-beige/50 focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition-all duration-300 text-darkgray placeholder:text-darkgray/30"
 										placeholder="email@ejemplo.com"
 									/>
@@ -145,7 +162,7 @@
 									<input
 										name="tel"
 										type="tel"
-										bind:value={formData.phone}
+										bind:value={phone}
 										class="w-full px-4 py-3 rounded-xl bg-white/70 border border-beige/50 focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition-all duration-300 text-darkgray placeholder:text-darkgray/30"
 										placeholder="+52 (55) 0000-0000"
 									/>
@@ -157,7 +174,7 @@
 									name="mensaje"
 									required
 									rows={4}
-									bind:value={formData.message}
+									bind:value={message}
 									class="w-full px-4 py-3 rounded-xl bg-white/70 border border-beige/50 focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition-all duration-300 text-darkgray placeholder:text-darkgray/30 resize-none"
 									placeholder="Cuentanos como podemos ayudarte..."></textarea>
 							</div>

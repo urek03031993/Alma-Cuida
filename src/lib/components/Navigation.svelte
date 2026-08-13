@@ -23,7 +23,6 @@
 		
 		if(session && adminLinkIndex === -1) {			
 			navLinks.push({ label: 'Admin', href: resolve('/(authed)/admin') });
-			console.log('session in Navigation.svelte:', navLinks);
 		}
 	});
 

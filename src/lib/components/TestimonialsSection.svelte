@@ -36,7 +36,7 @@
 		},
 		{
 			quote:
-				'El ambiente es calido y las instalaciones son hermosas. Mi padre disfruta cada dia las actividades y la compania. No podriamos estar mas agradecidos.',
+				'El personal es atento y cuidadoso. Mi padre disfruta cada dia las actividades y la compania. No podriamos estar mas agradecidos.',
 			author: 'Carlos Herrera',
 			role: 'Hijo de residente',
 			image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80'

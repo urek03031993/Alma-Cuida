@@ -41,7 +41,7 @@
 			image: Image2,
 			title: 'Transportes',
 			description:
-				'Servicio especializado para personas con movilidad reducida y adultos mayores. Con asistencia al subir y bajar del vehículo, traslados seguros a consultas médicas, trámites y actividades sociales, y coordinamos horarios con familias y centros de salud. Prioramos la seguridad, la puntualidad y un trato atento durante todo el recorrido.'
+				'Servicio especializado para personas con movilidad reducida y adultos mayores acompañados de un médico. Con asistencia al subir y bajar del vehículo, traslados seguros a consultas médicas, trámites y actividades sociales, y coordinamos horarios con familias y centros de salud. Prioramos la seguridad, la puntualidad y un trato atento durante todo el recorrido.'
 		}
 	];
 </script>

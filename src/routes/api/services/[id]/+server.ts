@@ -66,8 +66,6 @@ export const GET: RequestHandler = async ({ params }) => {
 };
 
 
-
-
 export const PUT: RequestHandler = async ({ request }) => {
 	try {
 		const body = await request.json();
