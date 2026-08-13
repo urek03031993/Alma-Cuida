@@ -1,3 +1,35 @@
+<script lang="ts">
+	import { fade, fly } from 'svelte/transition';
+
+	let name = $state('');
+	let email = $state('');
+	let phone = $state('');
+	let message = $state('');
+	let submitted = $state(false);
+		
+
+	function handleSubmit(e: Event) {
+		e.preventDefault();
+		submitted = true;
+		setTimeout(() => (submitted = false), 5000);
+
+		const recipient = "almacuidacomercial@gmail.com";
+		const subject = 'Peticion de servicio de parte de ' + name;
+		const body = [
+		'Nombre: ' + name,
+		'Telefono: ' + phone,
+		'Mensaje: ' + message
+		].join("\n");
+
+		const mailtoUrl = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+		name = '';
+		email = '';
+		phone = '';
+		message = '';
+		window.location.href = mailtoUrl;
+	}
+</script>	
+
 <main class="pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 	<section class="text-center mb-20 animate-in fade-in slide-in-from-bottom-4 duration-1000">
 		<h1 class="font-headline-xl text-headline-xl md:text-headline-xl mb-6 text-sage">
@@ -71,7 +103,12 @@
 			</div>
 		</div>
 		<div class="glass-card p-10 rounded-xl">
-			<form class="space-y-6">
+			<form class="space-y-6" onsubmit={handleSubmit}>
+				{#if submitted}
+					<div class="bg-sage/10 text-sage font-body-md text-body-md p-4 rounded-lg" in:fly={{ y: 200, duration: 2000 }} out:fade>
+						¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.
+					</div>
+				{/if}
 				<div class="space-y-2">
 					<label class="font-label-md text-label-md text-secondary ml-1" for="name">Nombre Completo</label>
 					<input
@@ -80,6 +117,7 @@
 						placeholder="Escribe tu nombre completo"
 						required
 						type="text"
+						bind:value={name}
 					/>
 				</div>
 				<div class="space-y-2">
@@ -90,6 +128,7 @@
 						placeholder="ejemplo@correo.com"
 						required
 						type="email"
+						bind:value={email}
 					/>
 				</div>
 				<div class="space-y-2">
@@ -99,6 +138,7 @@
 						id="phone"
 						placeholder="10 dígitos"
 						type="tel"
+						bind:value={phone}
 					/>
 				</div>
 				<div class="space-y-2">
@@ -108,7 +148,9 @@
 						id="message"
 						placeholder="¿En qué podemos ayudarte?"
 						required
-						rows="5"></textarea>
+						rows="5"
+						bind:value={message}
+					></textarea>
 				</div>
 				<button class="w-full py-5 bg-sage text-white font-headline-md text-headline-md rounded-xl hover:bg-sage-dark active:scale-[0.98] transition-all shadow-md mt-4"	type="submit">
 					Enviar Mensaje

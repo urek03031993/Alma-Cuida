@@ -22,21 +22,17 @@
 		<div class="absolute inset-0 bg-linear-to-r from-cream/60 via-transparent to-cream/40"></div>
 	</div>
 
-	<!-- Decorative floating elements -->
 	<div class="absolute top-32 left-10 w-20 h-20 rounded-full bg-sage/10 floating hidden lg:block"></div>
 	<div class="absolute bottom-40 right-20 w-16 h-16 rounded-full bg-beige/60 floating-delay hidden lg:block"></div>
 	<div class="absolute top-1/2 right-1/4 w-12 h-12 rounded-full bg-sage/15 floating-delay-2 hidden lg:block"></div>
 
-	<!-- Content -->
 	<div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center pt-20">
 		<div
 			class="transition-all duration-1000 {loaded
 				? 'opacity-100 translate-y-0'
 				: 'opacity-0 translate-y-8'}"
 		>
-			<span
-				class="inline-block px-5 py-2 glass rounded-full text-xs font-semibold text-sage-dark tracking-widest uppercase mb-8"
-			>
+			<span class="inline-block px-5 py-2 glass rounded-full text-xs font-semibold text-sage-dark tracking-widest uppercase mb-8">
 				Servicios Premium para el Adulto Mayor
 			</span>
 		</div>
@@ -55,7 +51,7 @@
 		</h1>
 
 		<p
-			class="text-lg md:text-xl text-darkgray/70 max-w-3xl mx-auto mb-10 leading-relaxed transition-all duration-1000 delay-200 {loaded
+			class="text-lg md:text-xl text-black/80 max-w-3xl mx-auto mb-10 leading-relaxed transition-all duration-1000 delay-200 {loaded
 				? 'opacity-100 translate-y-0'
 				: 'opacity-0 translate-y-8'}"
 		>
@@ -69,10 +65,10 @@
 				: 'opacity-0 translate-y-8'}"
 		>
 			<a
-				href="#cuidado"
-				class="btn-shine group px-8 py-4 bg-sage text-white font-semibold rounded-full hover:bg-sage-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2"
+				href="#contacto"
+				class="btn-shine group px-8 py-4 bg-sage text-white font-semibold rounded-full hover:bg-sage-dark-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2"
 			>
-				Conoce a nuestro equipo
+				Contactar
 				<svg
 					class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
 					fill="none"
@@ -87,12 +83,6 @@
 					/>
 				</svg>
 			</a>
-			<a
-				href="#contacto"
-				class="px-8 py-4 border-2 border-darkgray/20 text-darkgray font-semibold rounded-full hover:border-sage hover:text-sage transition-all duration-300 hover:-translate-y-0.5"
-			>
-				Contactar
-			</a>
 		</div>
 
 		<!-- Stats -->
@@ -103,8 +93,8 @@
 		>
 			{#each stats as stat(stat.label)}
 				<div class="text-center">
-					<div class="text-2xl md:text-3xl font-bold text-sage">{stat.number}</div>
-					<div class="text-xs md:text-sm text-darkgray/ mt-1">{stat.label}</div>
+					<div class="text-2xl md:text-3xl font-bold text-sage-dark">{stat.number}</div>
+					<div class="text-xs md:text-sm text-darkgray/80 mt-1">{stat.label}</div>
 				</div>
 			{/each}
 		</div>

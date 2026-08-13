@@ -115,7 +115,7 @@ export const actions = {
             description: formData.get("description"),
             image: formData.get("image"),
             active: formData.get("active") ? true : false,
-        };
+        };        
 
         const serviceValidation = serviceUpdateSchema.safeParse(data);
 
@@ -129,7 +129,6 @@ export const actions = {
                 }
             });
         }
-
 
         let imageId: number = 0;
         if(serviceValidation.data.image && serviceValidation.data.name && serviceValidation.data.description){

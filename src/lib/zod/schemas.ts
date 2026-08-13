@@ -5,14 +5,30 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 
-export const imageFileSchemaZod = z
-    .instanceof(File, { message: "Debe ser un archivo" })
+export const imageFileSchemaZod = z.instanceof(File, { message: "Debe subir una foto" })
+    .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
+        message: `Tipo de archivo no soportado. Usa: ${ACCEPTED_IMAGE_TYPES.join(", ")}`,
+    })
     .refine((file) => file.size <= MAX_FILE_SIZE, {
         message: `El tamaño máximo es ${MAX_FILE_SIZE / (1024 * 1024)}MB`,
-    })
-    .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
-        message: `Tipo no soportado. Usa: ${ACCEPTED_IMAGE_TYPES.join(", ")}`,
-});
+    });
+
+
+const imageFileOptionalSchemaZod = z.preprocess(
+    (value) => {
+        if (value instanceof File && value.size === 0) {
+            return undefined;
+        }
+
+        if (value === null || value === undefined) {
+            return undefined;
+        }
+
+        return value;
+    },
+    imageFileSchemaZod.optional()
+);
+
 
 
 
@@ -31,13 +47,13 @@ export const serviceApiSchema = serviceBaseSchema.extend({
 });
 
 export const serviceUpdateSchema = serviceBaseSchema.partial().extend({
-    image: imageFileSchemaZod.optional(),
+    image: imageFileOptionalSchemaZod,
     id: z.coerce.number().int().positive('ID inválido')
 });
 
 export const serviceApiUpdateSchema = serviceBaseSchema.extend({
     id: z.coerce.number().int().positive('ID inválido'),
-    imageUuid: z.coerce.number().int().positive()
+    imageUuid: z.coerce.number().int().positive().optional()
 });
 
 
@@ -139,6 +155,10 @@ export const userSchema = z.object({
     name: z.string().min(1, 'El nombre es obligatorio').max(100, 'Máximo 100 caracteres'),
     email: z.email(),
     password: z.string().min(1, 'La contraseña corta es obligatoria').max(250, 'Máximo 250 caracteres'),
+});
+
+export const userUpdateSchema = userSchema.partial().extend({
+    id: z.string().min(1, 'El id es obligatorio').max(250, 'Máximo 250 caracteres')
 });
 
 
