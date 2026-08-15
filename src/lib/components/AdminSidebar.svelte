@@ -4,11 +4,24 @@
 	import { authClient } from "$lib/clientAuth/client";
 	import { goto } from "$app/navigation";
 	import { CalendarDays, LayoutDashboard, LogOut, StarCheck, Users } from "@lucide/svelte";
+	import { toastStore } from "$lib/stores/stores";
 
-
+	const session = authClient.useSession();
 	async function logout() {
-		await authClient.signOut();
-		goto(resolve("/(app)"));
+		const { data , error} = await authClient.signOut();
+
+		if(data && data.success) {
+			goto(resolve("/(app)"));
+			return;
+		}
+
+
+		if(error) {
+			console.log("Logout error: ", error);
+			toastStore.error("Se produjo un error al cerrar sesión..");
+		}
+				
+
 	}
 </script>
 
@@ -80,10 +93,12 @@
 					src="https://lh3.googleusercontent.com/aida/AP1WRLv7LRBnxKPoOk2NvqjcX1qxpkLoj0Y0HcxZB2kzClTeoFeFyLSHA0DlWepw9sEyAjGX89MCBhe5dtlZn27NV3VQPCt7ZVcHdSZ-2tSXTU4NGgTnayEeYperfr27Pqc1GB_LwaWc8Z2jSFOWuXqPZHlziMIMN89PjViVahKlmWz2Pje5Hy0x5YYTkZGnyl40WSZi54lYIaRahtBSjHqgDbzeasrKHqIRi-Op_kfDmSVrRdq49ZhrGSRpPTA" 
 				/>
 			</div>
-			<div>
-				<p class="font-label-md text-on-surface text-sm">Martin Rozano</p>
-				<p class="text-[12px] text-darkgray">Administrator</p>
-			</div>
+			{#if $session.data}
+				<div>
+					<p class="font-label-md text-on-surface text-sm">{$session.data.user.name}</p>
+					<p class="text-[12px] text-darkgray">Administrator</p>
+				</div>
+			{/if}			
 		</div>
 	</div>
 </aside>
